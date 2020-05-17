@@ -1,0 +1,56 @@
+<div class="container pt-1">
+  <h2>Shopping Cart</h2>
+  <div class="card">
+    <h5 class="card-header">
+      <div class="row ">
+        <p class="col-lg-6 card-text m-0">You have {{itemService.TotalItemInCart()}} items in your shopping cart</p>
+        <button class="offset-3 col-lg-3 btn btn-primary" *ngIf="itemService.TotalItemInCart()>0" (click)="itemService.clearCart()">Clear All</button>
+      </div>
+    </h5>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col" class="text-center">product</th>
+              <th scope="col" class="text-center">Quantity</th>
+              <th scope="col" class="text-center">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of itemService.ProductList()">
+              <td class="text-center">
+                <img class="rounded-circle" src="{{item.image}}" data-holder-rendered="true">
+              </td>
+              <td class="text-center">{{item.name}}</td>
+              <td>
+                <div class="input-group" *ngIf="item.count>0">
+                  <div class="input-group-prepend hand">
+                    <span class="input-group-text bg-dark text-white" (click)="item.count=item.count+1">+</span>
+                  </div>
+                  <input type="text" disabled class="form-control text-center"
+                    aria-label="Amount (to the nearest dollar)" style="width:0px" [value]="item.count">
+                  <div class="input-group-append hand">
+                    <span class="input-group-text bg-dark text-white" (click)="item.count=item.count-1">-</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">${{item.price * item.count}}</td>
+            </tr>
+            <tr *ngIf="itemService.TotalItemInCart()>0">
+              <td colspan="3">
+              </td>
+              <td class="text-center font-weight-bold">
+                ${{itemService.totalMoney()}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer" *ngIf="itemService.TotalItemInCart()>0">
+      <a routerLink="/shopping" class="btn btn-primary">Check Out</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-3">
+      <ul class="list-group">
+        <li class="list-group-item hand" [ngClass]="current==0?'active':''" (click)="ChangeCatagory(0)">All Catagory</li>
+        <li class="list-group-item hand" [ngClass]="current==2?'active':''" (click)="ChangeCatagory(2)">Bread</li>
+        <li class="list-group-item hand" [ngClass]="current==3?'active':''" (click)="ChangeCatagory(3)">Diary</li>
+        <li class="list-group-item hand" [ngClass]="current==1?'active':''" (click)="ChangeCatagory(1)">Fruits</li>
+        <li class="list-group-item hand " [ngClass]="current==4?'active':''" (click)="ChangeCatagory(4)">Seasonings and spices</li>
+        <li class="list-group-item hand " [ngClass]="current==5?'active':''" (click)="ChangeCatagory(5)">Vegetables</li>
+      </ul>
+    </div>
+    <div class="col-sm-8 col-md-8 col-lg-9">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 pb-3" *ngFor="let data of item">
+          <div class="card">
+            <img src="{{data.image}}" class="card-img-top" alt="{{data.name}}">
+            <div class="card-body">
+              <h5 class="card-title">{{data.name}}</h5>
+              <p class="card-text">${{data.price}}</p>
+            </div>
+            <div class="card-footer">
+              <button *ngIf="data.count==0" class="btn btn-dark w-100"(click)="data.count=data.count+1">Add To Cart</button>
+              <div class="input-group" *ngIf="data.count>0">
+                <div class="input-group-prepend hand">
+                  <span class="input-group-text bg-dark text-white" (click)="data.count=data.count+1">+</span>
+                </div>
+                <input type="text" disabled class="form-control text-center" aria-label="Amount (to the nearest dollar)" [value]="data.count">
+                <div class="input-group-append hand">
+                  <span class="input-group-text bg-dark text-white" (click)="data.count=data.count-1">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

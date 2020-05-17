@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/product">
+        <i class="fa fa-leaf" aria-hidden="true"></i>
+      </a>
+      <a class="navbar-brand" routerLink="/cart">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        <span class="badge badge-pill badge-warning">{{itemServiec.TotalItemInCart()}}</span>
+      </a>
+    </div>
+    <p class="navbar-text navbar-right mb-0" style="padding: 0px 0px">Signed in as <a href="#" class="navbar-link">Saurabh Rathore</a></p>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
